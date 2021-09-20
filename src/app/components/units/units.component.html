@@ -1,0 +1,106 @@
+<div class="units-container">
+  <div class="header px-3 py-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-5">Units Page</h1>
+  </div>
+  <div class="ages my-4">
+    <div *ngIf="selectedAgeFilter | async; let age;" class="btn-group" role="group"
+         aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="all" autocomplete="off"
+             (change)="changeAgeFilter(AgeFilterTypesEnum.All)" [checked]="age === AgeFilterTypesEnum.All">
+      <label class="btn btn-outline-secondary" for="all">All</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="dark" autocomplete="off"
+             (change)="changeAgeFilter(AgeFilterTypesEnum.Dark)" [checked]="age === AgeFilterTypesEnum.Dark">
+      <label class="btn btn-outline-secondary" for="dark">Dark</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="feudal" autocomplete="off"
+             (change)="changeAgeFilter(AgeFilterTypesEnum.Feudal)" [checked]="age === AgeFilterTypesEnum.Feudal">
+      <label class="btn btn-outline-secondary" for="feudal">Feudal</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="castle" autocomplete="off"
+             (change)="changeAgeFilter(AgeFilterTypesEnum.Castle)" [checked]="age === AgeFilterTypesEnum.Castle">
+      <label class="btn btn-outline-secondary" for="castle">Castle</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="imperial" autocomplete="off"
+             (change)="changeAgeFilter(AgeFilterTypesEnum.Imperial)" [checked]="age === AgeFilterTypesEnum.Imperial">
+      <label class="btn btn-outline-secondary" for="imperial">Imperial</label>
+    </div>
+  </div>
+  <div class=" my-4">
+    <div class="cost-type row mx-0 align-items-center" *ngIf="(selectedCostWoodFilter | async) || {}; let filterWood;">
+      <div class="form-check col-1 mt-4">
+        <input class="form-check-input" type="checkbox" value="" id="woodCheck"
+               [checked]="filterWood.type" (change)="toggleCostFilter(CostFilterTypesEnum.Wood, $event)">
+        <label class="form-check-label" for="woodCheck">
+          Wood
+        </label>
+      </div>
+      <div class="col-4" [ngClass]="{'disabled': !filterWood.type}">
+        <ngx-slider [value]="filterWood?.min ? filterWood?.min : 0"
+                    (valueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Wood, CostValueTypesEnum.min)"
+                    [highValue]="filterWood?.max ? filterWood?.max : 200"
+                    (highValueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Wood, CostValueTypesEnum.max)"
+                    [options]="options"></ngx-slider>
+      </div>
+    </div>
+    <div class="cost-type row mx-0 align-items-center" *ngIf="(selectedCostFoodFilter | async) || {}; let filterFood;">
+      <div class="form-check col-1 mt-4">
+        <input class="form-check-input" type="checkbox" value="" id="foodCheck"
+               [checked]="filterFood.type" (change)="toggleCostFilter(CostFilterTypesEnum.Food, $event)">
+        <label class="form-check-label" for="foodCheck">
+          Food
+        </label>
+      </div>
+      <div class="col-4" [ngClass]="{'disabled': !filterFood.type}">
+        <ngx-slider [value]="filterFood?.min ? filterFood?.min : 0"
+                    (valueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Food, CostValueTypesEnum.min)"
+                    [highValue]="filterFood?.max ? filterFood?.max : 200"
+                    (highValueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Food, CostValueTypesEnum.max)"
+                    [options]="options"></ngx-slider>
+      </div>
+    </div>
+    <div class="cost-type row mx-0 align-items-center" *ngIf="(selectedCostGoldFilter | async) || {}; let filterGold;">
+      <div class="form-check col-1 mt-4">
+        <input class="form-check-input" type="checkbox" value="" id="goldCheck"
+               [checked]="filterGold.type" (change)="toggleCostFilter(CostFilterTypesEnum.Gold, $event)">
+        <label class="form-check-label" for="goldCheck">
+          Gold
+        </label>
+      </div>
+      <div class="col-4" [ngClass]="{'disabled': !filterGold.type}">
+        <ngx-slider [value]="filterGold?.min ? filterGold?.min : 0"
+                    (valueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Gold, CostValueTypesEnum.min)"
+                    [highValue]="filterGold?.max ? filterGold?.max : 200"
+                    (highValueChange)="changeCostRangeFilter($event, CostFilterTypesEnum.Gold, CostValueTypesEnum.max)"
+                    [options]="options"></ngx-slider>
+      </div>
+    </div>
+  </div>
+  <div class="my-4">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Costs</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="(units | async).length === 0">
+        <td colspan="4">
+          No information to show.
+        </td>
+      </tr>
+      <tr class="table-row" [routerLink]="['/units/',unit.id]" *ngFor="let unit of units | async">
+        <th scope="row">{{unit.id}}</th>
+        <td>{{unit.name}}</td>
+        <td>{{unit.age}}</td>
+        <td>{{unit.cost ? (unit.cost.Wood ? 'Wood : ' + unit.cost.Wood : '') : ' - '}}
+          {{unit.cost ? (unit.cost.Food ? 'Food : ' + unit.cost.Food : '') : ' - '}}
+          {{unit.cost ? (unit.cost.Gold ? 'Gold : ' + unit.cost.Gold : '') : ' - '}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

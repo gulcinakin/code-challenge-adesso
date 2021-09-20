@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+html {
+  font-size: 14px;
+  font-family: "Comic Sans MS";
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+}
+
+.container {
+  max-width: 960px;
+}
+
+.header {
+  max-width: 700px;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5
+}
+
+.table-row {
+  cursor: pointer
+}
+
+.ngx-slider {
+  height: 2px !important;
+
+  .ngx-slider-bubble {
+    font-size: 13px !important;
+  }
+
+  .ngx-slider-pointer {
+    outline: none;
+    width: 20px !important;
+    height: 20px !important;
+    top: -8px !important;
+
+    &:after {
+      width: 6px !important;
+      height: 6px !important;
+      top: 7px !important;
+      left: 7px !important;
+    }
+  }
+}
+

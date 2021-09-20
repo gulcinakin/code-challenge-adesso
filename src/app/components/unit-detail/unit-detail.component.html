@@ -1,0 +1,59 @@
+<div class="unit-detail-container">
+  <div class="header px-3 py-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-5">Unit Detail Page</h1>
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <tbody *ngIf="(unit | async) || {}; let unit;">
+      <tr>
+        <th>ID</th>
+        <td>{{unit.id}}</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>{{unit.name}}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{unit.description}}</td>
+      </tr>
+      <tr>
+        <th>Min Req. Age</th>
+        <td> {{unit.age}}</td>
+      </tr>
+      <tr>
+        <th>Wood Cost</th>
+        <td>{{unit.cost?.Wood ? unit.cost.Wood : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Food Cost</th>
+        <td> {{unit.cost?.Food ? unit.cost.Food : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Gold Cost</th>
+        <td>{{unit.cost?.Gold ? unit.cost.Gold : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Build Time</th>
+        <td>{{unit.build_time ? unit.build_time : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Reload Time</th>
+        <td>{{unit.reload_time ? unit.reload_time : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Hit Points</th>
+        <td>{{unit.hit_points ? unit.hit_points : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Attack</th>
+        <td>{{unit.attack ? unit.attack : ' - '}}</td>
+      </tr>
+      <tr>
+        <th>Accuracy</th>
+        <td>{{unit.accuracy ? unit.attack : ' - '}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
