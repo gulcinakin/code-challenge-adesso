@@ -4,9 +4,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
-import {HomeComponent} from './components/home/home.component';
-import {UnitsComponent} from './components/units/units.component';
-import {UnitDetailComponent} from './components/unit-detail/unit-detail.component';
 import {StoreModule} from '@ngrx/store';
 import {unitReducer} from './reducers/unit.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -16,6 +13,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {EffectsModule} from '@ngrx/effects';
 import {UnitEffects} from './effects/unit.effects';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
+import {HomeComponent} from './containers/home/home.component';
+import {UnitsComponent} from './containers/units/units.component';
+import {UnitDetailComponent} from './containers/unit-detail/unit-detail.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
     HomeComponent,
     UnitsComponent,
     UnitDetailComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
